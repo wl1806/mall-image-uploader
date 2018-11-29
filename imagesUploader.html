@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="imageUploader.css" />
+    <link rel="stylesheet" type="text/css" href="select2.min.css" />
+    <script src="imageUploader.js"></script>
+    <script src="select2.min.js"></script>
+</head>
+
+<body>
+
+    <h3>Unggah gambar</h3>
+
+    <div class="container">
+        <form id="form" method="post" enctype="multipart/form-data" action="https://mall-internal.airyrooms.com/v1/internal/image/upload">
+            <!-- Category or Inventory -->
+            <label for="type">Type</label>
+            <br>
+            <select onChange="changeType()" class="select2" id="type" name="type">
+                <option value="" disabled selected>Pilih Tipe</option>
+                <option value="CATEGORY">Category</option>
+                <option value="INVENTORY">Inventory</option>
+            </select>
+            <br /><br /><br />
+
+            <!-- Category -->
+            <div class="div-hidden-category" hidden>
+                <label for="category-id">Category ID</label>
+                <br>
+                <select class="select2" id="category-id" name="id">
+                    <option value="" disabled selected>Pilih category</option>
+                </select>
+                <br /><br /><br />
+            </div>
+
+            <!-- Inventory -->
+            <div class="div-hidden-inventory" hidden>
+                <label for="inventory-category-id">Category ID</label>
+                <br>
+                <select onChange="fetchInventory()" class="select2" id="inventory-category-id">
+                    <option value="" disabled selected>Pilih category</option>
+                </select>
+                <br /><br /><br />
+
+                <label for="inventory-id">Inventory ID</label>
+                <br>
+                <select class="select2" id="inventory-id" name="id">
+                    <option value="" disabled selected>Pilih inventory</option>
+                </select>
+                <br /><br /><br />
+            </div>
+
+            <!-- Upload image -->            
+            <div id="uploader-container">
+                <input multiple onChange="uploadedImage(this)" type="file" id="uploader-image" name="images"
+                    class="uploader-images" accept="image/*">
+                <div id="images">
+                </div>
+            </div>
+
+            <br />
+            <div id="error" class="error"></div>
+            <br />
+            <button id="button" value="Submit">Submit</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
